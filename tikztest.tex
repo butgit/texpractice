@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{5pt}%
+\usetikzlibrary{fit}
+\usetikzlibrary{shapes.geometric}
+
+\begin{document}
+\begin{tikzpicture}[scale=1,cap=round,>=latex]
+\node[draw,fill=blue,rectangle] (v1) at (0,0) {$v_1$} ;
+\node[draw,fill=red,circle] (v2) at (2,0) {$v_2$} ;
+\draw[<-] (v1) to (v2) ;
+\node[draw,ellipse,fit=(v1) (v2)] (ell) {} ;
+\end{tikzpicture}
+\begin{tikzpicture}[scale=1,cap=round,>=latex]
+\node[draw,fill=blue,rectangle] (v1) at (0,0) {$v_1$} ;
+\node[draw,fill=red,circle] (v2) at (2,0) {$v_2$} ;
+\draw[<-] (v1) to (v2) ;
+\node[draw,rectangle,rounded corners,very thick,
+fit=(v1) (v2)] (rec) {} ;
+\end{tikzpicture}
+\begin{tikzpicture}[scale=1,cap=round,>=latex]
+\foreach \i in {1,3,...,13}{
+    \begin{scope}[xshift=\i cm, rotate=15*\i]
+    \fill[red,opacity=\i / 13] (0,0) -- (1,0) -- (0.5,0.7);
+    \end{scope}
+}
+\end{tikzpicture}
+\begin{tikzpicture}[scale=1,cap=round,>=latex]
+\foreach \i in {1,...,10}{
+    \foreach \j in {1,...,10}{
+        \pgfmathtruncatemacro{\ij}{\i * \j}
+        \node (\i-\j) at (\i,\j) {$\ij$} ;}}
+\fill[opacity=0.3,purple] (9-4) circle (0.6) ;
+\fill[opacity=0.3,cyan] (6-6) circle (0.6) ;
+\draw[<->,very thick] (9-4) -- (6-6) ;
+\end{tikzpicture}
+\end{document}
